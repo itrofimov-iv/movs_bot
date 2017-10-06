@@ -2,11 +2,31 @@ var TelegramBot = require('node-telegram-bot-api');
 var db = require('./db/db');
 var ObjectID = require('mongodb').ObjectID;
 
-var token = '417143040:AAEuE_851SI8yp-SjN0IRKFM7YyXLT8F8J0';
-//  var dbname = 'mongodb://kilkuss96:741222@mongodb/sampledb';
-var dbname = 'mongodb://localhost:27017/myapi';
+
+// var token = '417143040:AAEuE_851SI8yp-SjN0IRKFM7YyXLT8F8J0'; //deploy
+var token = '363117408:AAFAWaXUye_BuvTdSH-iwtGoH3hTR49LRNI'; //test
+//  var dbname = 'mongodb://kilkuss96:741222@mongodb/sampledb'; //deploy
+var dbname = 'mongodb://localhost:27017/myapi'; //test
+// var idNewsChannel = -1001110394500;  //deploy
+var idNewsChannel = -1001134677653;   //test
 
 var bot = new TelegramBot(token, { polling: true });
+
+//region important message
+
+bot.on('message', (msg) => {
+    var important = '#важно'
+    if (msg.text !== undefined) {
+        if (msg.text.toLowerCase().indexOf(important) !== -1) {
+            addLog('sendImportantMsg', msg);
+            bot.sendMessage(idNewsChannel, msg.text);
+        }
+    }
+});
+
+//endregion
+
+//region timetable
 
 bot.onText(/\/start/, (msg) => {
     bot.sendMessage(msg.from.id, "Выберите свою группу.", {
@@ -32,9 +52,9 @@ bot.onText(/\/timetable/, (msg) => {
 
 //получение расписания
 bot.onText(/\/r (.+)/, (msg, match) => {
+    addLog('getTimetable', msg);
     mdate = (msg.date) * 1000;
     var date = new Date(mdate);
-    console.log(date)
     var cday = date.getDay();
     var rday = 0;
     var evenWeek = isEvenWeek(date.getTime());
@@ -84,7 +104,12 @@ bot.onText(/\/r (.+)/, (msg, match) => {
                 if (err) {
                     return console.log(err);
                 }
-                sendTimetable(msg, rday, evenWeek, obj.group)
+                if(obj !== null){
+                    sendTimetable(msg, rday, evenWeek, obj.group);
+                }
+                else{
+                    bot.sendMessage(msg.chat.id, 'Для начала выберите группу!');
+                }
             }
         )
     })
@@ -92,6 +117,7 @@ bot.onText(/\/r (.+)/, (msg, match) => {
 
 //добавление группы
 bot.onText(/\/g (.+)/, (msg, match) => {
+    addLog('setGroup', msg);
     var group = 0;
     switch (match[1].toLowerCase()) {
         case 'пми-1':
@@ -112,11 +138,10 @@ bot.onText(/\/g (.+)/, (msg, match) => {
     setGroup(msg.from.id, group);
 })
 
-bot.onText(/\/test_bot/, function (msg) {
-    bot.sendMessage(msg.chat.id, "work");
-})
+//endregion
 
-//function for date
+//region date
+
 function isEvenWeek(mdate) {
     var oneweek = 604800000;
     var firstweek = 1506279600000;
@@ -124,7 +149,10 @@ function isEvenWeek(mdate) {
     return temp === 1 ? true : false;
 }
 
-//function for db
+//endregion
+
+//region db
+
 function sendTimetable(msg, rday, week, group) {
     console.log('group', group, 'week', week, 'day', rday)
     switch (rday) {
@@ -255,3 +283,15 @@ function setGroup(id, group) {
     })
 }
 
+//endregion
+
+//region log
+
+function addLog(type, msg) {
+    var date = new Date(msg.date * 1000);
+    console.log(date + " | " + type + " | " + msg.from.id + " | "
+        + msg.from.first_name + " | " + msg.from.last_name + " | "
+        + msg.from.username);
+}
+
+//endregion

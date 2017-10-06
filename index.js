@@ -3,12 +3,12 @@ var db = require('./db/db');
 var ObjectID = require('mongodb').ObjectID;
 
 
-// var token = '417143040:AAEuE_851SI8yp-SjN0IRKFM7YyXLT8F8J0'; //deploy
-var token = '363117408:AAFAWaXUye_BuvTdSH-iwtGoH3hTR49LRNI'; //test
-//  var dbname = 'mongodb://kilkuss96:741222@mongodb/sampledb'; //deploy
-var dbname = 'mongodb://localhost:27017/myapi'; //test
-// var idNewsChannel = -1001110394500;  //deploy
-var idNewsChannel = -1001134677653;   //test
+var token = '417143040:AAEuE_851SI8yp-SjN0IRKFM7YyXLT8F8J0'; //deploy
+// var token = '363117408:AAFAWaXUye_BuvTdSH-iwtGoH3hTR49LRNI'; //test
+ var dbname = 'mongodb://kilkuss96:741222@mongodb/sampledb'; //deploy
+// var dbname = 'mongodb://localhost:27017/myapi'; //test
+var idNewsChannel = -1001110394500;  //deploy
+// var idNewsChannel = -1001134677653;   //test
 
 var bot = new TelegramBot(token, { polling: true });
 

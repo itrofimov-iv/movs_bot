@@ -2,7 +2,7 @@ var TelegramBot = require('node-telegram-bot-api');
 var db = require('./db/db');
 var ObjectID = require('mongodb').ObjectID;
 //asd
-
+//asdasd
 var token = '417143040:AAEuE_851SI8yp-SjN0IRKFM7YyXLT8F8J0'; //deploy
 // var token = '363117408:AAFAWaXUye_BuvTdSH-iwtGoH3hTR49LRNI'; //test
 var dbname = 'mongodb://kilkuss96:741222@mongodb/sampledb'; //deploy

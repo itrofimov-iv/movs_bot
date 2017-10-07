@@ -15,7 +15,10 @@ var db = require('./db/db');
 var ObjectID = require('mongodb').ObjectID;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 23bae38... dev check
 
 var token = '417143040:AAEuE_851SI8yp-SjN0IRKFM7YyXLT8F8J0'; //deploy
 // var token = '363117408:AAFAWaXUye_BuvTdSH-iwtGoH3hTR49LRNI'; //test

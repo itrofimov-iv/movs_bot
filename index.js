@@ -13,12 +13,16 @@ var idNewsChannel = -1001134677653;
 var TelegramBot = require('node-telegram-bot-api');
 var db = require('./db/db');
 var ObjectID = require('mongodb').ObjectID;
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 23bae38... dev check
+=======
+//asd
+>>>>>>> parent of 17ad053... devdev
 
 var token = '417143040:AAEuE_851SI8yp-SjN0IRKFM7YyXLT8F8J0'; //deploy
 // var token = '363117408:AAFAWaXUye_BuvTdSH-iwtGoH3hTR49LRNI'; //test

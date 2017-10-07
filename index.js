@@ -1,31 +1,40 @@
+//region const
+//deploy
+// var token = '417143040:AAEuE_851SI8yp-SjN0IRKFM7YyXLT8F8J0'; 
+// var idNewsChannel = -1001110394500;
+// var dbname = 'mongodb://kilkuss96:741222@mongodb/sampledb'; 
+//dev
+var token = '472003810:AAFf_thS3mc76WLa5UGM2IR8r9OfIix_fdk'; 
+var dbname = 'mongodb://localhost:27017/mydb'; 
+var idNewsChannel = -1001134677653;
+//endregion
+
+//lib
 var TelegramBot = require('node-telegram-bot-api');
 var db = require('./db/db');
 var ObjectID = require('mongodb').ObjectID;
-//asd
-//asdasd
-var token = '417143040:AAEuE_851SI8yp-SjN0IRKFM7YyXLT8F8J0'; //deploy
-// var token = '363117408:AAFAWaXUye_BuvTdSH-iwtGoH3hTR49LRNI'; //test
-var dbname = 'mongodb://kilkuss96:741222@mongodb/sampledb'; //deploy
-// var dbname = 'mongodb://localhost:27017/myapi'; //test
-var idNewsChannel = -1001110394500;  //deploy
-// var idNewsChannel = -1001134677653;   //test
 
 var bot = new TelegramBot(token, { polling: true });
 
 //region important message
+bot.on('edited_message', (msg) => {
+    sendImpMsg(msg);
+});
 
 bot.on('message', (msg) => {
-    var important = '#важно'
+    sendImpMsg(msg);
+});
+
+function sendImpMsg(msg){
     if (msg.text !== undefined) {
+        var important = '#важно';
         if (msg.text.toLowerCase().indexOf(important) !== -1) {
             addLog('sendImportantMsg', msg);
             bot.sendMessage(idNewsChannel, msg.text);
         }
     }
-});
-
+}
 //endregion
-
 //region timetable
 
 bot.onText(/\/start/, (msg) => {
@@ -139,7 +148,6 @@ bot.onText(/\/g (.+)/, (msg, match) => {
 })
 
 //endregion
-
 //region date
 
 function isEvenWeek(mdate) {
@@ -150,7 +158,6 @@ function isEvenWeek(mdate) {
 }
 
 //endregion
-
 //region db
 
 function sendTimetable(msg, rday, week, group) {
@@ -284,7 +291,6 @@ function setGroup(id, group) {
 }
 
 //endregion
-
 //region log
 
 function addLog(type, msg) {

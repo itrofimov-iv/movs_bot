@@ -1,12 +1,12 @@
 //region const
 //deploy
-// var token = '417143040:AAEuE_851SI8yp-SjN0IRKFM7YyXLT8F8J0'; 
-// var idNewsChannel = -1001110394500;
-// var dbname = 'mongodb://kilkuss96:741222@mongodb/sampledb'; 
+var token = '417143040:AAEuE_851SI8yp-SjN0IRKFM7YyXLT8F8J0'; 
+var idNewsChannel = -1001110394500;
+var dbname = 'mongodb://kilkuss96:741222@mongodb/sampledb'; 
 //dev
-var token = '472003810:AAFf_thS3mc76WLa5UGM2IR8r9OfIix_fdk'; 
-var dbname = 'mongodb://localhost:27017/mydb'; 
-var idNewsChannel = -1001134677653;
+// var token = '472003810:AAFf_thS3mc76WLa5UGM2IR8r9OfIix_fdk'; 
+// var dbname = 'mongodb://localhost:27017/mydb'; 
+// var idNewsChannel = -1001134677653;
 //endregion
 
 //lib

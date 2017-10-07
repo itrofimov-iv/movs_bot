@@ -5,7 +5,7 @@ var ObjectID = require('mongodb').ObjectID;
 
 var token = '417143040:AAEuE_851SI8yp-SjN0IRKFM7YyXLT8F8J0'; //deploy
 // var token = '363117408:AAFAWaXUye_BuvTdSH-iwtGoH3hTR49LRNI'; //test
- var dbname = 'mongodb://kilkuss96:741222@mongodb/sampledb'; //deploy
+var dbname = 'mongodb://kilkuss96:741222@mongodb/sampledb'; //deploy
 // var dbname = 'mongodb://localhost:27017/myapi'; //test
 var idNewsChannel = -1001110394500;  //deploy
 // var idNewsChannel = -1001134677653;   //test
@@ -104,10 +104,10 @@ bot.onText(/\/r (.+)/, (msg, match) => {
                 if (err) {
                     return console.log(err);
                 }
-                if(obj !== null){
+                if (obj !== null) {
                     sendTimetable(msg, rday, evenWeek, obj.group);
                 }
-                else{
+                else {
                     bot.sendMessage(msg.chat.id, 'Для начала выберите группу!');
                 }
             }
